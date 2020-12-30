@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,7 +26,7 @@ public class LoginController {
     }
 
     @GetMapping
-    public String form(LoginCommand loginCommand,
+    public String form(@ModelAttribute LoginCommand loginCommand,
     		@CookieValue(value = "REMEMBER", required = false) Cookie rCookie) {
 		if (rCookie != null) {
 			loginCommand.setEmail(rCookie.getValue());

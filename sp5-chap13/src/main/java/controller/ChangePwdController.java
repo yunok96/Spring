@@ -27,6 +27,7 @@ public class ChangePwdController {
 	@GetMapping
 	public String form(
 			@ModelAttribute("command") ChangePwdCommand pwdCmd) {
+		System.out.println("컨트롤러");
 		return "edit/changePwdForm";
 	}
 

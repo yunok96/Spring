@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import spring.Member;
 import spring.MemberDao;
+import spring.RegisterRequest;
 
 @Controller
 public class MemberListController {
@@ -34,5 +35,10 @@ public class MemberListController {
 		}
 		return "member/memberList";
 	}
-
+	
+	@RequestMapping("/mymem")
+	public String gg(@ModelAttribute RegisterRequest request, Model model) {
+		model.addAttribute("reg", request);
+		return "member/mytest";
+	}
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>Member Insert</h1>
+	<div>
+		<input type="text" id="email" placeholder="email"><br> <input
+			type="password" id="password" placeholder="password"><br>
+		<input type="password" id="confirmPassword"
+			placeholder="confirmPassword"><br> <input type="text"
+			id="name" placeholder="name"> <input type="button"
+			id="insertButton" value="insert">
+	</div>
+	<div id="display"></div>
+	<script>
+		document.getElementById('insertButton').addEventListener(
+				'click',
+				function aa() {
+					var email = document.getElementById('email').value;
+					var password = document.getElementById('password').value;
+					var confirmPassword = document
+							.getElementById('confirmPassword').value;
+					var name = document.getElementById('name').value;
+					var json = {
+						email : email,
+						password : password,
+						confirmPassword : confirmPassword,
+						name : name
+					}
+					var xhttp = new XMLHttpRequest();
+					console.log(JSON.stringify(json))
+
+					$.ajax({
+						method : "GET",
+						contentType : "application/json",
+						url : "http://localhost:8080/sp5-chap16/api/members",
+					}).done(function(msg) {
+						console.log(msg)
+						tag = '';
+						$.each(msg, function(index, member) {
+							tag += '<ul>';
+							tag += '<li>id:' + member.email + '</li>';
+							tag += '</ul>';
+						})
+							$('#display').html(tag);
+					}).fail(function(msg) {
+						console.log(msg.responseText)
+					})
+
+				})
+	</script>
+</body>
+</html>

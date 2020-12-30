@@ -38,10 +38,10 @@ public class RestMemberController {
 	public ResponseEntity<Object> member(@PathVariable Long id) {
 		Member member = memberDao.selectById(id);
 		if (member == null) {
-			return ResponseEntity
-					.status(HttpStatus.NOT_FOUND)
-					.body(new ErrorResponse("no member"));
-			// return ResponseEntity.notFound().build();
+//			return ResponseEntity
+//					.status(HttpStatus.NOT_FOUND)
+//					.body(new ErrorResponse("no mmber"));
+			 return ResponseEntity.noContent().build();
 		}
 		return ResponseEntity.ok(member);
 	}

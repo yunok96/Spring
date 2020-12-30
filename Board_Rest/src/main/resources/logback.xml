@@ -9,6 +9,5 @@
 	<root level="INFO">
 		<appender-ref ref="stdout" />
 	</root>
-	
 	<logger name="org.springframework.web.servlet" level="DEBUG" />
 </configuration>

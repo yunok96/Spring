@@ -1,14 +1,14 @@
 package controller;
 
 public class ErrorResponse {
-	private String message;
+	private String mssage;
 
 	public ErrorResponse(String message) {
-		this.message = message;
+		this.mssage = message;
 	}
 
 	public String getMessage() {
-		return message;
+		return mssage;
 	}
 
 }
