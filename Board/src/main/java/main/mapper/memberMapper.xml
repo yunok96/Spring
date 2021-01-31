@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.mapper.MemberMapper">
+	<select id="selectMember" parameterType="Integer" resultType="main.vo.Member">
+		select * from member
+		<trim prefix="where" prefixOverrides="AND |OR ">
+			<if test="null != id">
+				id = #{id}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="selectMemberByEmail" parameterType="String" resultType="main.vo.Member">
+		select * from member where email = #{email}
+	</select>
+	
+	<insert id="insertMember" parameterType="main.vo.SignUpData">
+		insert into member
+		(email, password, name, reg_date) values
+		(#{email}, #{password}, #{name}, now())
+	</insert>
+</mapper>

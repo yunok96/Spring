@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.mapper.BoardMapper">
+	<select id="selectBoard" parameterType="Integer"
+		resultType="main.vo.Board">
+		select * from Board
+		<trim prefix="where" prefixOverrides="AND |OR ">
+			<if test="null != id">
+				id = #{id}
+			</if>
+		</trim>
+	</select>
+	<insert id="insertBoard" parameterType="main.vo.Board">
+		insert into Board (title, content, reg_date, memberId, fileName, server_fileName) values (#{title}, #{content}, now(), #{memberId}, #{fileName}, #{server_fileName})
+	</insert>
+</mapper>
