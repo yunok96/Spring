@@ -73,7 +73,7 @@ public class BoardController {
 	@PostMapping("write")
 	public ModelAndView createBoardDone(Board board, HttpSession session) throws IllegalStateException, IOException {
 		ModelAndView mav = null;
-		boolean isFile = (null != board.getFile());
+		boolean isFile = (0 != board.getFile().getSize());
 		if(isFile) {
 			String fileName = board.getFile().getOriginalFilename();
 			String server_fileName = System.currentTimeMillis() + "_" + fileName;
