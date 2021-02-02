@@ -53,8 +53,7 @@
 		<fieldset>
 			<div class="form-group">
 				<label for="comment">Leave your comment</label>
-				<textarea class="form-control" name="comment" rows="2"
-					style="margin-top: 0px; margin-bottom: 0px; height: 100px;"></textarea>
+				<textarea class="form-control" name="comment" rows="2" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
 				<button type="submit" name="commentInsert" class="btn btn-primary">Save</button>
 			</div>
 		</fieldset>
@@ -104,7 +103,7 @@
 		function serializeArray(form) {
     		var object = {};
     		if (typeof form == 'object' && form.nodeName.toLowerCase() == "form") {
-				var fields = form.getElementsByTagName("input");
+				var fields = form.getElementsByTagName("textarea");
 				for(i=0;i<fields.length;i++){
 					object[fields[i].getAttribute("name")]=fields[i].value;
 				}

@@ -47,6 +47,7 @@
 	</div>
 	<script>
 		document.getElementsByName("commentInsert")[0].addEventListener('click', function(){
+			console.log(11)
 			commentInsert(JSON.stringify(serializeArray(document.getElementsByName("commentInsertForm")[0])))
 		})
 		commentList()
