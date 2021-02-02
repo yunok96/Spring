@@ -15,16 +15,18 @@ public class InterceptorTest implements HandlerInterceptor {
 		switch (req) {
 		case "/member":
 			if (null == request.getSession().getAttribute("user")) {
-				request.setAttribute("error", "회원 목록을 보려면 로그인해주세요.");
-				request.getRequestDispatcher("alertPage").forward(request, response);
+				request.setAttribute("error", "Please sign in to view members");
+				request.setAttribute("link", "/signIn");
+				request.getRequestDispatcher("/alertPage").forward(request, response);
 				return false;
 			} else {
 				return true;
 			}
 		case "/write":
 			if (null == request.getSession().getAttribute("user")) {
-				request.setAttribute("error", "게시글을 작성하려면 로그인해주세요.");
-				request.getRequestDispatcher("alertPage").forward(request, response);
+				request.setAttribute("error", "Please sign in to write articles");
+				request.setAttribute("link", "/signIn");
+				request.getRequestDispatcher("/alertPage").forward(request, response);
 				return false;
 			} else {
 				return true;

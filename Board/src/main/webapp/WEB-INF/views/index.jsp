@@ -5,20 +5,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Choi Portfolio</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-	<h1>인덱스 페이지</h1>
-	<c:if test="${empty user}">
-		<ul>
-			<li><a href="signIn">로그인</a></li>
-	</c:if>
-
-	<c:if test="${!empty user}">
-		<ul>
-			${user.name}님 환영합니다.
-			<li><a href='signOut'>로그아웃</a></li>
-	</c:if>
-	</ul>
+    <!--내비 바-->
+	<%@ include file="/WEB-INF/views/navbar.jsp"%>
+    <!--인사말-->
+    <c:if test="${empty user}">
+    <div class="jumbotron">
+        <h1 class="display-3">Main Page of Web Application</h1>
+        <p class="lead">This Web Application shows simple Sign In-Up-Out and write Articles with Session. Also Chat with Web Socket.</p>
+        <hr class="my-4">
+        <p>If you are new in here, Click the Sign Up Button on the Nav-Bar.</p>
+    </div>
+    </c:if>
+    <!--로그인 후 인사말-->
+    <c:if test="${!empty user}">
+    <div class="jumbotron">
+        <h1 class="display-3">Main Page of Web Application</h1>
+        <p class="lead">This Web Application shows simple Sign In-Up-Out and write Articles with Session. Also Chat with Web Socket.</p>
+        <hr class="my-4">
+        <p>Welcome, ${user.name}!</p>
+    </div>
+    </c:if>
+<script type="text/javascript" src="bootstrap.js" charset="UTF-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 </body>
 </html>

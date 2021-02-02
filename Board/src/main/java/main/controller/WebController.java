@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,7 @@ public class WebController {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping("/main")
+	@RequestMapping(value = {"/index", "/"})
 	public String mainPage() {
 		return "index";
 	}
@@ -39,41 +40,43 @@ public class WebController {
 		return mav;
 	}
 	
-	@RequestMapping("/member/{id}")
-	public ModelAndView memberPageNum(@PathVariable("id") Integer id) throws Exception {
-		ModelAndView mav = new ModelAndView("member");
-		mav.addObject("memberList", memberService.selectMember(id));
-		return mav;
-	}
+//	@RequestMapping("/member/{id}")
+//	public ModelAndView memberPageNum(@PathVariable("id") Integer id) throws Exception {
+//		ModelAndView mav = new ModelAndView("member");
+//		mav.addObject("memberList", memberService.selectMember(id));
+//		return mav;
+//	}
 
-	@GetMapping("/signUp")
+	@GetMapping("/signup")
 	public ModelAndView signUpPage() throws Exception {
-		ModelAndView mav = new ModelAndView("signUp");
+		ModelAndView mav = new ModelAndView("signup");
 		mav.addObject("signUpdata", new SignUpData());
 		return mav;
 	}
 
-	@PostMapping("/signUp")
+	@PostMapping("/signup")
 	public ModelAndView signUpDone(SignUpData data) {
 		ModelAndView mav = null;
 		try {
 			if (1 == memberService.insertMember(data)) {
-				mav = new ModelAndView("signUpSuccess");
+				mav = new ModelAndView("alertPage");
+				mav.addObject("error", "Sign up success. Welcome, "+data.getName()+"!");
+				mav.addObject("link", "/");
 				mav.addObject("name", data.getName());
 			} else {
-				mav = new ModelAndView("signUp");
+				mav = new ModelAndView("signup");
 			}
 			return mav;
 		} catch (ConfirmPasswordExeption e) {
-			e.printStackTrace();
-			mav = new ModelAndView("alertPage");
-			mav.addObject("error", "비밀번호가 일치하지 않습니다");
+			mav = new ModelAndView("/alertPage");
+			mav.addObject("error", "Password or confirm password you entered don\\'t match. Please check again.");
+			mav.addObject("link", "signup");
 			return mav;
 		}
 	}
 
 	@GetMapping("/signIn")
-	public ModelAndView signInPage(SignInData signInData, @CookieValue(value="signInData", required = false) Cookie ck) {
+	public ModelAndView signInPage(@ModelAttribute SignInData signInData, @CookieValue(value="signInData", required = false) Cookie ck) {
 		ModelAndView mav = new ModelAndView("signIn");
 		if(null != ck) {
 			signInData.setEmail(ck.getValue());
@@ -94,12 +97,15 @@ public class WebController {
 				ck.setPath("/signIn");
 				resp.addCookie(ck);
 			} else {
+				ck.setValue(null);
 				ck.setMaxAge(0);
+				ck.setPath("/signIn");
+				resp.addCookie(ck);
 			}
 			mav = new ModelAndView("index");
 		} else {
 			mav = new ModelAndView("alertPage");
-			mav.addObject("error", "로그인 정보가 일치하지 않습니다.");
+			mav.addObject("error", "The email and password you entered don\\'t match any account. Please try again.");
 		}
 		return mav;
 	}

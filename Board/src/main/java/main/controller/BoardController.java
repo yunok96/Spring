@@ -44,7 +44,7 @@ public class BoardController {
 	}
 	@RequestMapping("board/{id}")
 	public ModelAndView boardDetailView(@PathVariable("id") Integer id) {
-		ModelAndView mav = new ModelAndView("newBoardDetail");
+		ModelAndView mav = new ModelAndView("boardDetailView");
 		mav.addObject("boardList", boardService.selectBoard(id));
 		return mav;
 	}

@@ -5,12 +5,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Check Members</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<style>
+  .table-hover{
+    width: 70%;
+    margin: 50px auto;
+  }
+</style>
 </head>
 <body>
-	<h1>멤버</h1>
-	<c:forEach var="member" items="${memberList}">
-		${member.id} | ${member.name} | ${member.password} | ${member.name} | ${member.reg_date}<br>
-	</c:forEach>
+    <!--내비 바-->
+    <%@ include file="/WEB-INF/views/navbar.jsp"%>
+    <!--멤버 리스트-->
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Email</th>
+            <th scope="col">Name</th>
+            <th scope="col">Registration Date</th>
+          </tr>
+        </thead>
+        <c:forEach var="member" items="${memberList}" varStatus="status">
+        <tbody>
+            <tr
+            <c:choose>
+            	<c:when test="${status.index%2==0}">class="table-primary"</c:when>
+            	<c:otherwise>class="table-secondary"</c:otherwise>
+        	</c:choose>>
+                <th scope="row">${member.id}</th>
+                <td>${member.email}</td>
+                <td>${member.name}</td>
+                <td>${member.reg_date}</td>
+            </tr>
+        </tbody>
+        </c:forEach>
+    </table>
+<script type="text/javascript" src="bootstrap.js" charset="UTF-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 </body>
 </html>
