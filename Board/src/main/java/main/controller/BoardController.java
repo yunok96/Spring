@@ -84,12 +84,14 @@ public class BoardController {
 		}
 		board.setMemberId(((Member)session.getAttribute("user")).getId());
 		if(1 == boardService.insertBoard(board)) {
-			mav = new ModelAndView("writeSuccess");
+			mav = new ModelAndView("alertPage");
+			mav.addObject("error", "The article is successfully saved.");
+			mav.addObject("link", "/board");
 		} else {
 			mav = new ModelAndView("alertPage");
-			mav.addObject("error", "작성 중에 오류가 발생했습니다.");
+			mav.addObject("error", "There was error on saving the article");
+			mav.addObject("link", "/write");
 		}
 		return mav;
 	}
-	
 }

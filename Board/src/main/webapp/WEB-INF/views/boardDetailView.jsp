@@ -54,7 +54,7 @@
 			<div class="form-group">
 				<label for="comment">Leave your comment</label>
 				<textarea class="form-control" name="comment" rows="2" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
-				<button type="submit" name="commentInsert" class="btn btn-primary">Save</button>
+				<button name="commentInsert" class="btn btn-primary">Save</button>
 			</div>
 		</fieldset>
 	</form>
@@ -64,9 +64,14 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script>
 		document.getElementsByName("commentInsert")[0].addEventListener('click', function(){
-			commentInsert(JSON.stringify(serializeArray(document.getElementsByName("commentInsertForm")[0])))
+			if('' == '${sessionScope.user}') {
+				alert('Please sign in to comment on the article.');
+			 	//location.href="/signIn";
+			} else {
+				commentInsert(JSON.stringify(serializeArray(document.getElementsByName("commentInsertForm")[0])))
+			}
 		})
-		commentList()
+		commentList();
 
 		function commentInsert(data){
 			var url = '/board/${id}/post'
@@ -74,6 +79,7 @@
 			xhttp.open('POST', url, true);
 			xhttp.setRequestHeader("Content-type", "application/json");
 			xhttp.send(data);
+			document.getElementsByName("comment")[0].value='';
 		}
 
 		function commentList(){
