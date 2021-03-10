@@ -22,24 +22,24 @@
     <!--회원가입 폼-->
       <form:form modelAttribute="signUpdata">
         <fieldset>
-          <legend>Sign Up</legend>
+          <legend>회원 가입</legend>
           <div class="form-group">
-            <label for="email">Email address</label>
+            <label for="email">이메일 주소</label>
             <form:input path="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email"/>
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">비밀번호</label>
             <form:input path="password" class="form-control" placeholder="Enter Password"/>
           </div>
           <div class="form-group">
-            <label for="confirmPassword">Password Check</label>
+            <label for="confirmPassword">비밀번호 확인</label>
             <form:input path="confirmPassword" class="form-control" placeholder="Enter Password Again"/>
           </div>
           <div class="form-group">
-            <label class="col-form-label" for="name">Name</label>
+            <label class="col-form-label" for="name">이름</label>
             <form:input path="name" class="form-control" placeholder="Enter Name"/>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">확인</button>
         </fieldset>
       </form:form>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>

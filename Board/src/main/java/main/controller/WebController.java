@@ -47,13 +47,15 @@ public class WebController {
 //		return mav;
 //	}
 
+	//회원가입 페이지 Get 매핑
 	@GetMapping("/signup")
 	public ModelAndView signUpPage() throws Exception {
 		ModelAndView mav = new ModelAndView("signup");
 		mav.addObject("signUpdata", new SignUpData());
 		return mav;
 	}
-
+	
+	//회원가입 정보 Post 매핑
 	@PostMapping("/signup")
 	public ModelAndView signUpDone(SignUpData data) {
 		ModelAndView mav = null;
@@ -74,7 +76,8 @@ public class WebController {
 			return mav;
 		}
 	}
-
+	
+	//로그인 Get 매핑
 	@GetMapping("/signIn")
 	public ModelAndView signInPage(@ModelAttribute SignInData signInData, @CookieValue(value="signInData", required = false) Cookie ck) {
 		ModelAndView mav = new ModelAndView("signIn");
@@ -85,6 +88,7 @@ public class WebController {
 		return mav;
 	}
 	
+	//로그인 Post 매핑
 	@PostMapping("/signIn")
 	public ModelAndView signInDone(SignInData data, HttpSession session, HttpServletResponse resp) {
 		ModelAndView mav = null;

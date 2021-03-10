@@ -23,9 +23,9 @@
         <thead>
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">Email</th>
-            <th scope="col">Name</th>
-            <th scope="col">Registration Date</th>
+            <th scope="col">이메일</th>
+            <th scope="col">이름</th>
+            <th scope="col">등록일</th>
           </tr>
         </thead>
         <c:forEach var="member" items="${memberList}" varStatus="status">

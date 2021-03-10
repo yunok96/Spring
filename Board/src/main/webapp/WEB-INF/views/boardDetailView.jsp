@@ -41,8 +41,8 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th scope="col">User Id</th>
-				<th scope="col">Comment</th>
+				<th scope="col">ID</th>
+				<th scope="col">댓글</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -52,7 +52,7 @@
 	<form method="post" name="commentInsertForm">
 		<fieldset>
 			<div class="form-group">
-				<label for="comment">Leave your comment</label>
+				<label for="comment">댓글을 남겨주세요</label>
 				<textarea class="form-control" name="comment" rows="2" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
 				<button name="commentInsert" class="btn btn-primary">Save</button>
 			</div>
@@ -65,14 +65,12 @@
 	<script>
 		document.getElementsByName("commentInsert")[0].addEventListener('click', function(){
 			if('' == '${sessionScope.user}') {
-				alert('Please sign in to comment on the article.');
-			 	//location.href="/signIn";
+				alert('게시글에 댓글을 남기려면 로그인해주세요');
 			} else {
 				commentInsert(JSON.stringify(serializeArray(document.getElementsByName("commentInsertForm")[0])))
 			}
 		})
 		commentList();
-
 		function commentInsert(data){
 			var url = '/board/${id}/post'
 			var xhttp = new XMLHttpRequest();
@@ -81,7 +79,6 @@
 			xhttp.send(data);
 			document.getElementsByName("comment")[0].value='';
 		}
-
 		function commentList(){
 			var url = '/board/${id}/get'
 			var xhttp = new XMLHttpRequest()
@@ -104,8 +101,6 @@
 			xhttp.setRequestHeader('Content-type', 'application/json')
 			xhttp.send()
 		}
-
-		//커스텀의 커스텀
 		function serializeArray(form) {
     		var object = {};
     		if (typeof form == 'object' && form.nodeName.toLowerCase() == "form") {

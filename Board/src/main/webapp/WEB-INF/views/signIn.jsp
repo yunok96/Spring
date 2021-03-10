@@ -25,22 +25,22 @@
     <!--로그인 폼-->
     <form:form modelAttribute="signInData">
         <fieldset>
-          <legend>Sign In</legend>
+          <legend>로그인</legend>
           <div class="form-group">
-            <label for="email">Email address</label>
+            <label for="email">이메일 주소</label>
             <form:input path="email" class="form-control" placeholder="Enter email"/>
             <!--<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">비밀번호</label>
             <form:input path="password" class="form-control" placeholder="Enter Password"/>
             <!--<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">-->
           </div>
     	  <div class="custom-control custom-checkbox">
       		<form:checkbox path="checked" class="custom-control-input"/>
-      		<label class="custom-control-label" for="checked1">Remember Email</label>
+      		<label class="custom-control-label" for="checked1">이메일 저장</label>
    		  </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">확인</button>
         </fieldset>
       </form:form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>

@@ -29,7 +29,7 @@
     <!--내비 바-->
     <%@ include file="/WEB-INF/views/navbar.jsp"%>
     <!--작성버튼-->
-    <button type="button" class="btn btn-primary">Write article</button>
+    <button type="button" class="btn btn-primary">게시글 작성</button>
     <!--게시글 리스트-->
     <div class="box">
     <c:forEach var="board" items="${boardList}">

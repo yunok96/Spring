@@ -48,14 +48,17 @@ public class BoardController {
 		mav.addObject("boardList", boardService.selectBoard(id));
 		return mav;
 	}
+	
 	@GetMapping("board/{id}/get")
 	@ResponseBody
 	public ResponseEntity getComment(@PathVariable("id") Integer id) {
 		List<Comment> commentList = commentService.selectComment(id);
 		return new ResponseEntity(commentList, HttpStatus.OK);
 	}
+	
 	@PostMapping("board/{id}/post")
-	public ResponseEntity addComment(@PathVariable("id") Integer id, @RequestBody Comment comment, HttpSession session) {
+	public ResponseEntity addComment(@PathVariable("id") Integer id, 
+			@RequestBody Comment comment, HttpSession session) {
 		comment.setBoardId(id);
 		comment.setMemberId(((Member)session.getAttribute("user")).getId());
 		if(1 == commentService.insertComment(comment)) {
@@ -64,6 +67,7 @@ public class BoardController {
 			return ResponseEntity.ok(new RestObject("1","실패"));
 		}
 	}
+	
 	@GetMapping("write")
 	public ModelAndView createBoard() {
 		ModelAndView mav = new ModelAndView("createBoard");
